@@ -87,8 +87,8 @@
         /*热点*/
         .hotpot {
             display: inline-block;
-            width: 200px;
-            height: 200px;
+            width: 128px;
+            height: 128px;
             background: url("/hotpot.gif") no-repeat;
             background-size: cover;
             position: absolute;
@@ -135,25 +135,33 @@
 
 </head>
 <body onload="runScript()">
+<!--loading页-->
 <div id="loading">
     <div class="spinner">
         <div class="cube1"></div>
         <div class="cube2"></div>
     </div>
 </div>
+<!--gif页-->
 <img id="startGif2" src="startGif2.gif" onload="startGifLoaded()" style="visibility: hidden">
+
+<!--热点-->
 <div class="hotpot hp1"></div>
 <div class="hotpot hp2"></div>
 <div class="hotpot hp3"></div>
 <div class="hotpot hp4"></div>
 
+<!--热点弹层-->
 <div id="mask-for-tips"></div>
 <img class="tips zdq" src="zdq.gif" width="100%" alt="制度墙"/>
 <img class="tips znsb" src="znsb.gif" width="100%" alt="制度墙"/>
 <img class="tips znyg" src="znyg.gif" width="100%" alt="制度墙"/>
 <img class="tips jscf" src="jscf.gif" width="100%" alt="制度墙"/>
+
+<!--调剂-->
 <img id="kstj" src="kstj.png" alt="开始调剂"/>
 
+<!--全景-->
 <div id="canvas3d">
 </div>
 <script>
