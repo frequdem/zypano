@@ -329,6 +329,8 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 		}
         _this.object.up.set(0,1,0);
+
+
 	};
 
 	this.reset = function () {
@@ -583,18 +585,22 @@ THREE.TrackballControls = function ( object, domElement ) {
 		window.removeEventListener( 'keyup', keyup, false );
 
 	};
+    this.bind = function() {
+        this.domElement.addEventListener( 'contextmenu', contextmenu, false );
+        this.domElement.addEventListener( 'mousedown', mousedown, false );
+        this.domElement.addEventListener( 'wheel', mousewheel, false );
 
-	this.domElement.addEventListener( 'contextmenu', contextmenu, false );
-	this.domElement.addEventListener( 'mousedown', mousedown, false );
-	this.domElement.addEventListener( 'wheel', mousewheel, false );
+        this.domElement.addEventListener( 'touchstart', touchstart, false );
+        this.domElement.addEventListener( 'touchend', touchend, false );
+        this.domElement.addEventListener( 'touchmove', touchmove, false );
+        window.addEventListener( 'keydown', keydown, false );
+        window.addEventListener( 'keyup', keyup, false );
 
-	this.domElement.addEventListener( 'touchstart', touchstart, false );
-	this.domElement.addEventListener( 'touchend', touchend, false );
-	this.domElement.addEventListener( 'touchmove', touchmove, false );
+    };
 
-	window.addEventListener( 'keydown', keydown, false );
-	window.addEventListener( 'keyup', keyup, false );
 
+
+    this.bind();
 	this.handleResize();
 
 	// force an update at start
