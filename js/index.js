@@ -26,7 +26,6 @@ window.runScript = function() {
     var scene;
     function initScene() {
         scene = new THREE.Scene();
-        scene.add(new THREE.AxisHelper(20))
     }
 
     //设置相机
@@ -101,7 +100,10 @@ window.runScript = function() {
         hp1 = new THREE.Vector3(55.915517,-18.390022,-80.840967);
         hp1.project(camera);
         hp1CanvasPos = hp1.toArray();
-        hp1Jq.css({"transform": "translate(" + (hp1CanvasPos[0]+1)/2*width + "px," + (hp1CanvasPos[1]+1)/2*height + "px)"});
+        hp1Jq.css({
+            "transform": "translate(" + (hp1CanvasPos[0]+1)/2*width + "px," + (1 - hp1CanvasPos[1])/2*height + "px)",
+            "-webkit-transform": "translate(" + (hp1CanvasPos[0]+1)/2*width + "px," + (1 - hp1CanvasPos[1])/2*height + "px)"
+        });
         renderer.render(scene, camera);
         requestAnimationFrame(loopRender);
     }
