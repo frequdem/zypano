@@ -11,6 +11,8 @@ window.runScript = function() {
     },5000);
     //开启Three.js渲染器
     var renderer;//声明全局变量（对象）
+    var width;
+    var height;
     function initThree() {
         width = document.getElementById('canvas3d').clientWidth;//获取画布「canvas3d」的宽
         height = document.getElementById('canvas3d').clientHeight;//获取画布「canvas3d」的高
@@ -24,6 +26,7 @@ window.runScript = function() {
     var scene;
     function initScene() {
         scene = new THREE.Scene();
+        scene.add(new THREE.AxisHelper(20))
     }
 
     //设置相机
@@ -82,28 +85,23 @@ window.runScript = function() {
     }
 
     //点击的hotpot
-    function getTexture(url) {
-        var textureLoader = new THREE.TextureLoader();
-        return textureLoader.load(url);
-
-    }
+    var hp1;
     function initHotpot() {
-        var sprite = new THREE.Sprite(new THREE.SpriteMaterial({
-            color: 0xff0000,
-            map: getTexture('hotpot.gif'),
-            _needsUpdate: true
-        }));
-        var size = 0.1;
-        sprite.position.set(0,0,0);
-        sprite.scale.set(size, size, size);
-//        scene.add(sprite);
+
     }
     //执行
     var clock = new THREE.Clock();
+    var hp1Jq = $('.hp1');
+    var hp1CanvasPos;
+
     function loopRender(){
         renderer.clear();
         var delta = clock.getDelta();
         trackballControls.update(delta);
+        hp1 = new THREE.Vector3(55.915517,-18.390022,-80.840967);
+        hp1.project(camera);
+        hp1CanvasPos = hp1.toArray();
+        hp1Jq.css({"transform": "translate(" + (hp1CanvasPos[0]+1)/2*width + "px," + (hp1CanvasPos[1]+1)/2*height + "px)"});
         renderer.render(scene, camera);
         requestAnimationFrame(loopRender);
     }

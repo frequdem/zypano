@@ -29,7 +29,8 @@
             width: 160px;
             height: 160px;
             background: url("/hotpot.gif");
-            background-size: cover;
+            -webkit-transform: translate(100px,300px);
+            transform: translate(100px,300px);
             position: absolute;
             z-index: 99;
         }
@@ -43,7 +44,7 @@
 <body onload="runScript()">
 <!--<img id="startGif" src="../images/startGif.gif" alt="进入"/>-->
 <!--<img id="startGif" src="/startGif.gif" alt="进入"/>-->
-<div class="hotpot"></div>
+<div class="hotpot hp1"></div>
 <div id="canvas3d">
 </div>
 </body>
