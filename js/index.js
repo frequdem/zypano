@@ -6,9 +6,6 @@ window.THREE = require('three');
 require("./TrackballControls.js");
 
 window.runScript = function() {
-    setTimeout(function(){
-//        $('#startGif').fadeOut();
-    },5000);
     //开启Three.js渲染器
     var renderer;//声明全局变量（对象）
     var width;
@@ -98,7 +95,8 @@ window.runScript = function() {
     hpImgJqs.hp2 = $('.znyg');
     hpImgJqs.hp3 = $('.znsb');
     hpImgJqs.hp4 = $('.zdq');
-
+    var kstjJq = $('#kstj');
+    kstjJq.click(kstjClick);
     function bindTipsEvent() {
 //        openLayer
         $.each(hotpotNames,function(index,val) {
@@ -120,7 +118,7 @@ window.runScript = function() {
             });
             trackballControls.bind();
             if(hpClicked.length == 4){
-                $('#kstj').show();
+                kstjJq.show();
             }
         })
     }
@@ -157,5 +155,9 @@ window.runScript = function() {
         loopRender();
     }
     threeStart();
+
+    function kstjClick() {
+        alert('开始调剂');
+    }
 
 };

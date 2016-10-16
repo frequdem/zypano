@@ -12,6 +12,66 @@
             height: 100%;
             position: relative;
         }
+        /*loading页*/
+        #loading {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 101;
+            background: #ffffff;
+        }
+        .spinner {
+            width:160px;
+            height: 200px;
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .cube1, .cube2 {
+            background-color: #67CF22;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            -webkit-animation: cubemove 1.8s infinite ease-in-out;
+            animation: cubemove 1.8s infinite ease-in-out;
+        }
+
+        .cube2 {
+            -webkit-animation-delay: -0.9s;
+            animation-delay: -0.9s;
+        }
+
+        @-webkit-keyframes cubemove {
+            25% { -webkit-transform: translateX(124px) rotate(-90deg) scale(0.5) }
+            50% { -webkit-transform: translateX(124px) translateY(124px) rotate(-180deg) }
+            75% { -webkit-transform: translateX(0px) translateY(124px) rotate(-270deg) scale(0.5) }
+            100% { -webkit-transform: rotate(-360deg) }
+        }
+
+        @keyframes cubemove {
+            25% {
+                transform: translateX(124px) rotate(-90deg) scale(0.5);
+                -webkit-transform: translateX(124px) rotate(-90deg) scale(0.5);
+            } 50% {
+                  transform: translateX(124px) translateY(124px) rotate(-179deg);
+                  -webkit-transform: translateX(124px) translateY(124px) rotate(-179deg);
+              } 50.1% {
+                    transform: translateX(124px) translateY(124px) rotate(-180deg);
+                    -webkit-transform: translateX(124px) translateY(124px) rotate(-180deg);
+                } 75% {
+                      transform: translateX(0px) translateY(124px) rotate(-270deg) scale(0.5);
+                      -webkit-transform: translateX(0px) translateY(124px) rotate(-270deg) scale(0.5);
+                  } 100% {
+                        transform: rotate(-360deg);
+                        -webkit-transform: rotate(-360deg);
+                    }
+        }
         #canvas3d {
             width: 100%;
             height: 100%;
@@ -66,6 +126,7 @@
         }
 
     </style>
+
     <!--<script src="../js/jquery.min.js"></script>-->
     <!--<script src="../built/index.min.js"></script>-->
     <script src="/jquery.min.js"></script>
@@ -73,8 +134,7 @@
 
 </head>
 <body onload="runScript()">
-<!--<img id="startGif" src="../images/startGif.gif" alt="进入"/>-->
-<!--<img id="startGif" src="/startGif.gif" alt="进入"/>-->
+<img id="startGif" src="startGif.gif" onload="startGifLoaded()">
 <div class="hotpot hp1"></div>
 <div class="hotpot hp2"></div>
 <div class="hotpot hp3"></div>
@@ -86,7 +146,19 @@
 <img class="tips znyg" src="znyg.png" width="100%" alt="制度墙"/>
 <img class="tips jscf" src="jscf.png" width="100%" alt="制度墙"/>
 <img id="kstj" src="kstj.png" alt="开始调剂"/>
+<div id="loading">
+    <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+    </div>
+</div>
 <div id="canvas3d">
 </div>
+<script>
+    function startGifLoaded() {
+        $('#loading').fadeOut();
+        setTimeout(function(){$('#startGif').hide();},5000);
+    }
+</script>
 </body>
 </html>
