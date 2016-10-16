@@ -126,9 +126,10 @@
         }
 
     </style>
-    <link rel="stylesheet" href="/gifplayer.css"/>
+
+    <!--<script src="../js/jquery.min.js"></script>-->
+    <!--<script src="../built/index.min.js"></script>-->
     <script src="/jquery.min.js"></script>
-    <script src="/jquery.gifplayer.js"></script>
 
 
 </head>
@@ -139,9 +140,7 @@
         <div class="cube2"></div>
     </div>
 </div>
-
-
-<img id="startGif" src="startGif1.gif" onload="startGifLoaded()">
+<img id="startGif" src="startGif1.gif" onload="startGifLoaded()" style="visibility: hidden">
 <div class="hotpot hp1"></div>
 <div class="hotpot hp2"></div>
 <div class="hotpot hp3"></div>
@@ -157,10 +156,9 @@
 <div id="canvas3d">
 </div>
 <script>
-    $('#startGif').gifplayer();
     function startGifLoaded() {
         $('#loading').hide(0);
-        $('#startGif').gifplayer({ label: 'play' });
+        $('#startGif1').css({'visibility': 'visible'});
         setTimeout(function(){$('#startGif').hide();},5000);
     }
 </script>
