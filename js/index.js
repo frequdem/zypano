@@ -7,7 +7,7 @@ require("./TrackballControls.js");
 
 window.runScript = function() {
     setTimeout(function(){
-        $('#startGif').fadeOut();
+//        $('#startGif').fadeOut();
     },5000);
     //开启Three.js渲染器
     var renderer;//声明全局变量（对象）
@@ -80,6 +80,24 @@ window.runScript = function() {
         cubeMesh.name = 'cubemap';
         scene.add(cubeMesh);
     }
+
+    //点击的hotpot
+    function getTexture(url) {
+        var textureLoader = new THREE.TextureLoader();
+        return textureLoader.load(url);
+
+    }
+    function initHotpot() {
+        var sprite = new THREE.Sprite(new THREE.SpriteMaterial({
+            color: 0xff0000,
+            map: getTexture('hotpot.gif'),
+            _needsUpdate: true
+        }));
+        var size = 0.1;
+        sprite.position.set(0,0,0);
+        sprite.scale.set(size, size, size);
+//        scene.add(sprite);
+    }
     //执行
     var clock = new THREE.Clock();
     function loopRender(){
@@ -95,8 +113,9 @@ window.runScript = function() {
         initScene();
         initControls();
         initPano();
+        initHotpot();
         loopRender();
     }
     threeStart();
 
-}
+};
