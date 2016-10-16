@@ -7,7 +7,7 @@ require("./TrackballControls.js");
 
 window.runScript = function() {
     setTimeout(function(){
-        $('#startGif').fadeOut();
+//        $('#startGif').fadeOut();
     },5000);
     //开启Three.js渲染器
     var renderer;//声明全局变量（对象）
@@ -83,12 +83,8 @@ window.runScript = function() {
         scene.add(cubeMesh);
     }
 
-
-
-
-
     //执行
-    var hotpotNames = [];
+    var hotpotNames = ['hp1', 'hp2', 'hp3', 'hp4'];
     var hotpots = {};
     var hotpotJqs = {};
     hotpotJqs.hp1 = $('.hp1');
@@ -96,39 +92,36 @@ window.runScript = function() {
     hotpotJqs.hp3 = $('.hp3');
     hotpotJqs.hp4 = $('.hp4');
     var maskJq = $('#mask-for-tips');
-    var hp1ImgJq = $('.jscf');
-    var hp2ImgJq = $('.znyg');
-    var hp3ImgJq = $('.znsb');
-    var hp4ImgJq = $('.zdq');
-    function bindEvent() {
-        hotpotJqs.hp1.click(function(){
-            maskJq.show();
-            hp1ImgJq.show();
-            trackballControls.dispose();
-        });
-        hotpotJqs.hp2.click(function(){
-            maskJq.show();
-            hp2ImgJq.show();
-            trackballControls.dispose();
-        });
-        hotpotJqs.hp3.click(function(){
-            maskJq.show();
-            hp3ImgJq.show();
-            trackballControls.dispose();
-        });
-        hotpotJqs.hp4.click(function(){
-            maskJq.show();
-            hp4ImgJq.show();
-            trackballControls.dispose();
+    var hpClicked = [];
+    var hpImgJqs = {};
+    hpImgJqs.hp1 = $('.jscf');
+    hpImgJqs.hp2 = $('.znyg');
+    hpImgJqs.hp3 = $('.znsb');
+    hpImgJqs.hp4 = $('.zdq');
+
+    function bindTipsEvent() {
+//        openLayer
+        $.each(hotpotNames,function(index,val) {
+            hotpotJqs[val].click(function(){
+                if($.inArray(val,hpClicked) == -1){
+                    hpClicked.push(val);
+                }
+                maskJq.show();
+                hpImgJqs[val].show();
+                trackballControls.dispose();
+            })
         });
 
+//        closeLayer
         $('.tips').click(function(){
             maskJq.hide();
-            hp1ImgJq.hide();
-            hp2ImgJq.hide();
-            hp3ImgJq.hide();
-            hp4ImgJq.hide();
+            $.each(hotpotNames,function(index,val) {
+                hpImgJqs[val].hide();
+            });
             trackballControls.bind();
+            if(hpClicked.length == 4){
+                $('#kstj').show();
+            }
         })
     }
     var hpCanvasPos;
@@ -137,7 +130,6 @@ window.runScript = function() {
         renderer.clear();
         var delta = clock.getDelta();
         trackballControls.update(delta);
-        hotpotNames = ['hp1', 'hp2', 'hp3', 'hp4'];
         hotpots.hp1 = new THREE.Vector3(42.280837,-5.422552,-90.459531);
         hotpots.hp2 = new THREE.Vector3(88.531853,-16.392852,43.513048);
         hotpots.hp3 = new THREE.Vector3(-41.441496,-29.124501,86.222769);
@@ -161,7 +153,7 @@ window.runScript = function() {
         initScene();
         initControls();
         initPano();
-        bindEvent();
+        bindTipsEvent();
         loopRender();
     }
     threeStart();
