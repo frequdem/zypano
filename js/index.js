@@ -85,25 +85,58 @@ window.runScript = function() {
 
     //点击的hotpot
     var hp1;
-    function initHotpot() {
-
-    }
+    var hp2;
+    var hp3;
+    var hp4;
     //执行
     var clock = new THREE.Clock();
     var hp1Jq = $('.hp1');
-    var hp1CanvasPos;
+    var hp2Jq = $('.hp2');
+    var hp3Jq = $('.hp3');
+    var hp4Jq = $('.hp4');
+    var hpCanvasPos;
 
     function loopRender(){
         renderer.clear();
         var delta = clock.getDelta();
         trackballControls.update(delta);
-        hp1 = new THREE.Vector3(55.915517,-18.390022,-80.840967);
+        hp1 = new THREE.Vector3(42.280837,-5.422552,-90.459531);
+        hp2 = new THREE.Vector3(88.531853,-16.392852,43.513048);
+        hp3 = new THREE.Vector3(-41.441496,-29.124501,86.222769);
+        hp4 = new THREE.Vector3(-57.482493,-2.924985,-81.775347);
         hp1.project(camera);
-        hp1CanvasPos = hp1.toArray();
-        hp1Jq.css({
-            "transform": "translate(" + (hp1CanvasPos[0]+1)/2*width + "px," + (1 - hp1CanvasPos[1])/2*height + "px)",
-            "-webkit-transform": "translate(" + (hp1CanvasPos[0]+1)/2*width + "px," + (1 - hp1CanvasPos[1])/2*height + "px)"
-        });
+        hp2.project(camera);
+        hp3.project(camera);
+        hp4.project(camera);
+        hpCanvasPos = hp1.toArray();
+        if(hpCanvasPos[2]<1){
+            hp1Jq.css({
+                "transform": "translate(" + (hpCanvasPos[0]+1)/2*width + "px," + (1 - hpCanvasPos[1])/2*height + "px)",
+                "-webkit-transform": "translate(" + (hpCanvasPos[0]+1)/2*width + "px," + (1 - hpCanvasPos[1])/2*height + "px)"
+            });
+        }
+        hpCanvasPos = hp2.toArray();
+        if(hpCanvasPos[2]<1){
+            hp2Jq.css({
+                "transform": "translate(" + (hpCanvasPos[0]+1)/2*width + "px," + (1 - hpCanvasPos[1])/2*height + "px)",
+                "-webkit-transform": "translate(" + (hpCanvasPos[0]+1)/2*width + "px," + (1 - hpCanvasPos[1])/2*height + "px)"
+            });
+        }
+        hpCanvasPos = hp3.toArray();
+        if(hpCanvasPos[2]<1){
+            hp3Jq.css({
+                "transform": "translate(" + (hpCanvasPos[0]+1)/2*width + "px," + (1 - hpCanvasPos[1])/2*height + "px)",
+                "-webkit-transform": "translate(" + (hpCanvasPos[0]+1)/2*width + "px," + (1 - hpCanvasPos[1])/2*height + "px)"
+            });
+        }
+        hpCanvasPos = hp4.toArray();
+        if(hpCanvasPos[2]<1){
+            hp4Jq.css({
+                "transform": "translate(" + (hpCanvasPos[0]+1)/2*width + "px," + (1 - hpCanvasPos[1])/2*height + "px)",
+                "-webkit-transform": "translate(" + (hpCanvasPos[0]+1)/2*width + "px," + (1 - hpCanvasPos[1])/2*height + "px)"
+            });
+        }
+
         renderer.render(scene, camera);
         requestAnimationFrame(loopRender);
     }
@@ -113,7 +146,6 @@ window.runScript = function() {
         initScene();
         initControls();
         initPano();
-        initHotpot();
         loopRender();
     }
     threeStart();
