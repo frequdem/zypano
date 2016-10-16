@@ -45,7 +45,7 @@ window.runScript = function() {
     var trackballControls;
     function initControls() {
         trackballControls = new THREE.TrackballControls(camera);
-        trackballControls.rotateSpeed = 2;
+        trackballControls.rotateSpeed = 0.6;
         trackballControls.zoomSpeed = 0.1;
     }
 
