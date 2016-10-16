@@ -89,6 +89,7 @@
             display: inline-block;
             width: 128px;
             height: 128px;
+            border-radius: 64px;
             background: url("/hotpot.gif") no-repeat;
             background-size: cover;
             position: absolute;
@@ -168,7 +169,7 @@
     function startGifLoaded() {
         $('#loading').hide(0);
         $('#startGif2').css({'visibility': 'visible'});
-        setTimeout(function(){$('#startGif2').fadeOut(1000);},5500);
+        setTimeout(function(){$('#startGif2').fadeOut(1000);},5000);
     }
 </script>
 <script src="/index.min.js"></script>
