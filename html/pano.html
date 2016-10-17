@@ -76,24 +76,30 @@
             width: 100%;
             height: 100%;
             position: absolute;
-            z-index: 95;
+            z-index: 94;
         }
-        #startGif2 {
+        #startGifPart1, #startGifPart2 {
             width: 100%;
             height: 100%;
             position: absolute;
+        }
+        #startGifPart1 {
             z-index: 100;
         }
+        #startGifPart2 {
+            z-index: 99;
+        }
+
         /*热点*/
         .hotpot {
             display: inline-block;
-            width: 128px;
-            height: 128px;
+            width: 100px;
+            height: 100px;
             border-radius: 64px;
             background: url("/hotpot.gif") no-repeat;
             background-size: cover;
             position: absolute;
-            z-index: 96;
+            z-index: 95;
             -webkit-transform: translate(-200px, -200px);
             transform: translate(-200px, -200px);
         }
@@ -102,14 +108,14 @@
             width: 100%;
             height: 100%;
             position: absolute;
-            z-index: 98;
+            z-index: 97;
             background: #000;
             opacity: 0.6;
             display: none;
         }
         .tips {
             position: absolute;
-            z-index: 99;
+            z-index: 98;
             top: 50%;
             display: none;
             -webkit-transform: translate(0, -50%);
@@ -119,7 +125,7 @@
         #kstj {
             width: 36%;
             position: absolute;
-            z-index: 97;
+            z-index: 96;
             top: 84%;
             left: 50%;
             -webkit-transform: translate(-50%, 0);
@@ -144,8 +150,8 @@
     </div>
 </div>
 <!--gif页-->
-<img id="startGif2" src="startGif2.gif" onload="startGifLoaded()" style="visibility: hidden">
-
+<img id="startGifPart1" src="startGifPart1.gif" style="visibility: hidden">
+<img id="startGifPart2" src="startGifPart2.gif" onload="startGif2Loaded()" style="visibility: hidden"/>
 <!--热点-->
 <div class="hotpot hp1"></div>
 <div class="hotpot hp2"></div>
@@ -166,11 +172,15 @@
 <div id="canvas3d">
 </div>
 <script>
-    function startGifLoaded() {
+    function startGif2Loaded() {
         $('#loading').hide(0);
-        $('#startGif2').css({'visibility': 'visible'});
-        setTimeout(function(){$('#startGif2').fadeOut(1000);},5000);
+        $('#startGifPart1').css({'visibility': 'visible'});
     }
+    $('#startGifPart1').click(function(){
+        $('#startGifPart1').hide(0);
+        $('#startGifPart2').css({'visibility': 'visible'});
+        setTimeout(function(){$('#startGifPart2').fadeOut(1000);},3000);
+    })
 </script>
 <script src="/index.min.js"></script>
 </body>
