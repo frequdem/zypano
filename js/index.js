@@ -29,9 +29,9 @@ window.runScript = function() {
     var camera;
     function initCamera() {
         camera = new THREE.PerspectiveCamera( 75, width / height , 0.2, 100000 );//设置透视投影的相机,默认情况下相机的上方向为Y轴，右方向为X轴，沿着Z轴朝里（视野角：fov 纵横比：aspect 相机离视体积最近的距离：near 相机离视体积最远的距离：far）
-        camera.position.x = -0.2;//设置相机的位置坐标
+        camera.position.x = -0.5;//设置相机的位置坐标
         camera.position.y = 0;//设置相机的位置坐标
-        camera.position.z = 1;//设置相机的位置坐标
+        camera.position.z = -1;//设置相机的位置坐标
         camera.up.x = 0;//设置相机的上为「x」轴方向
         camera.up.y = 1;//设置相机的上为「y」轴方向
         camera.up.z = 0;//设置相机的上为「z」轴方向
@@ -50,7 +50,7 @@ window.runScript = function() {
     var textureCube;
     function initPano() {
         function createCubeMap(){
-            var path = "./cubemap/";
+            var path = "./images/cubemap/";
 //            var path = "/";
             var format = ".jpg";
             var urls = [
@@ -128,10 +128,10 @@ window.runScript = function() {
         renderer.clear();
         var delta = clock.getDelta();
         trackballControls.update(delta);
-        hotpots.hp1 = new THREE.Vector3(42.280837,-5.422552,-90.459531);
-        hotpots.hp2 = new THREE.Vector3(88.531853,-16.392852,43.513048);
-        hotpots.hp3 = new THREE.Vector3(-41.441496,-29.124501,86.222769);
-        hotpots.hp4 = new THREE.Vector3(-57.482493,-2.924985,-81.775347);
+        hotpots.hp1 = new THREE.Vector3(-21.520496,-13.438619,96.727823);
+        hotpots.hp2 = new THREE.Vector3(-57.40793,-13.438619,-80.76963);
+        hotpots.hp3 = new THREE.Vector3(9.00112,-44.41023,-89.144329);
+        hotpots.hp4 = new THREE.Vector3(99.247381,-8.279339,9.022741);
         $.each(hotpotNames,function(index,val) {
             hotpots[val].project(camera);
             hpCanvasPos = hotpots[val].toArray();
@@ -158,6 +158,7 @@ window.runScript = function() {
 
     function kstjClick() {
         alert('开始调剂');
+        $('#before-panorama').hide();
     }
 
 };

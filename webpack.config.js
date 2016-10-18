@@ -5,7 +5,7 @@ module.exports = {
     },
     //入口文件输出配置
     output: {
-        path: './built',
+        path: './js/built',
         filename: '[name].min.js'
     }
 };
